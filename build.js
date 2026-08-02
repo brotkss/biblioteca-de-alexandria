@@ -1,5 +1,4 @@
 const fs = require('fs');
-
 const API_KEY = process.env.GOOGLE_API_KEY;
 const RAIZ = process.env.DRIVE_ROOT_ID;
 
@@ -33,12 +32,7 @@ async function main() {
 <head>
 <meta charset="UTF-8">
 <title>Biblioteca de Alexandria — Índice</title>
-<style>
-  body { background:#111; color:#0f0; font-family: monospace; padding: 20px; }
-  summary.pasta { cursor:pointer; color:#0ff; }
-  a { color:#0f0; }
-  ul { list-style: none; }
-</style>
+<link rel="stylesheet" href="indice-style.css">
 </head>
 <body>
 <h1>Índice da Biblioteca</h1>
