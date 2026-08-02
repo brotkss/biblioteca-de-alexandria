@@ -1,0 +1,24 @@
+name: Atualizar Biblioteca
+
+on:
+  schedule:
+    - cron: '0 */6 * * *'
+  workflow_dispatch:
+
+jobs:
+  atualizar:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Gerar HTML a partir do Drive
+        env:
+          GOOGLE_API_KEY: ${{ secrets.GOOGLE_API_KEY }}
+          DRIVE_ROOT_ID: ${{ secrets.DRIVE_ROOT_ID }}
+        run: node build.js
+      - name: Subir pro Neocities
+        env:
+          NEOCITIES_API_KEY: ${{ secrets.NEOCITIES_API_KEY }}
+        run: |
+          curl -s -F "indice.html=@indice.html" \
+          -H "Authorization: Bearer $NEOCITIES_API_KEY" \
+          https://neocities.org/api/upload
